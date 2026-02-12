@@ -14,6 +14,7 @@ function App() {
   const [ratio, setRatio] = useState(0);
   const [screenAnimated, setScreenAnimated] = useState({
     opacity: 1,
+    zIndex: 0,
   });
   const [menuOpacity, setMenuOpacity] = useState(0);
   const [scrollY, setScrollY] = useState(0);
@@ -53,18 +54,33 @@ function App() {
   }, [scrollY, screenHeight]);
 
   useEffect(() => {
-    setScreenAnimated({
+    setScreenAnimated((prev) => ({
+      ...prev,
       opacity: 1 - ratio,
-    });
+      zIndex: ratio >= 1 ? -1 : 0,
+    }));
   }, [ratio]);
 
   return (
     <div className="App" ref={appRef}>
       <Header opacity={menuOpacity} />
-      <Screen height={100} width={100} opacity={screenAnimated.opacity} />
-      <Introduction />
-      <Project />
-      <Footer />
+      <Screen
+        height={100}
+        width={100}
+        opacity={screenAnimated.opacity}
+        zIndex={screenAnimated.zIndex}
+      />
+      <div
+        style={{
+          zIndex: 100000,
+          width: "100%",
+          backgroundColor: "var(--background-color)",
+        }}
+      >
+        <Introduction />
+        <Project />
+        <Footer />
+      </div>
     </div>
   );
 }

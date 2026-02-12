@@ -7,6 +7,8 @@
   place-content: center;
   padding: 0 4rem;
   width: 60vw;
+  z-index: 10000;
+  background-color: var(--background-color);
 }
 .introduction2-title {
   font-size: 2rem;
@@ -14,6 +16,7 @@
   color: var(--background-color);
   padding: 10px 20px;
   font-family: public-pixel;
+  z-index: 10001;
 }
 .introduction2-subtitle {
   font-size: 18px;
@@ -22,6 +25,8 @@
   padding-bottom: 3rem;
   border-bottom: 2px dashed var(--text-color);
   max-width: 680px;
+  z-index: 10001;
+  background-color: var(--background-color);
 }
 
 @media screen and (max-width: 768px) {
