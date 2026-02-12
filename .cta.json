@@ -1,16 +1,15 @@
 {
-  "projectName": "portfolio",
+  "projectName": "portfolio-huyle",
   "mode": "file-router",
   "typescript": true,
+  "packageManager": "npm",
   "tailwind": false,
-  "packageManager": "bun",
-  "git": true,
-  "install": true,
   "addOnOptions": {},
+  "git": true,
   "version": 1,
   "framework": "react-cra",
   "chosenAddOns": [
-    "start",
-    "nitro"
+    "nitro",
+    "start"
   ]
 }

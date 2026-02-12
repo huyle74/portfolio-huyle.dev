@@ -1,0 +1,73 @@
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 10000;
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out,
+    background-color 0.5s ease-in-out,
+    box-shadow 0.5s ease-in-out,
+    width 0.5s ease-in-out,
+    padding 0.5s ease-in-out;
+  width: 0;
+  height: 100vh;
+  background-color: transparent;
+  padding-left: 10px;
+  /* overflow: hidden; */
+}
+.button {
+  margin-top: 1rem;
+  background: var(--background-secondary-color);
+  border: none;
+  padding: 4px 16px;
+  border-radius: 2px;
+  font-size: 1em;
+  box-shadow: 8px 8px 0 0 rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s cubic-bezier(0.3, 0.7, 0.4, 1),
+    box-shadow 0.3s cubic-bezier(0.3, 0.7, 0.4, 1),
+    background 0.2s,
+    background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+  box-shadow: 5px 9px 10px 0 #cdbdab;
+  transform: scale(1.1);
+}
+
+.button:active {
+  box-shadow: 0 2px 6px rgba(78, 84, 200, 0.08);
+  /* Simulate "pressing down" by scaling slightly */
+  transform: scale(0.97);
+  /* Optionally, darken or brighten background */
+  filter: brightness(0.95);
+}
+
+.links {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  justify-content: flex-start;
+  /* border: white 1px solid; */
+  -webkit-tap-highlight-color: transparent;
+}
+.links a {
+  font-family: public-pixel;
+  text-decoration: none;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 1rem 0 0 0;
+  transition:
+    cubic-bezier(0.075, 0.82, 0.165, 1) 0.6s,
+    border-bottom 0.3s ease-in-out;
+  border-bottom: 1px solid transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+.links a:hover {
+  border-bottom: 1px solid var(--background-color);
+}

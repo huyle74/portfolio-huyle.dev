@@ -1,0 +1,39 @@
+.introduction2-container {
+  min-height: 100vh;
+  /* border: white 1px solid; */
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  padding: 0 4rem;
+  width: 60vw;
+}
+.introduction2-title {
+  font-size: 2rem;
+  background-color: var(--background-secondary-color);
+  color: var(--background-color);
+  padding: 10px 20px;
+  font-family: public-pixel;
+}
+.introduction2-subtitle {
+  font-size: 18px;
+  font-family: chill;
+  /* border: white 1px solid; */
+  padding-bottom: 3rem;
+  border-bottom: 2px dashed var(--text-color);
+  max-width: 680px;
+}
+
+@media screen and (max-width: 768px) {
+  .introduction2-container {
+    width: 90vw;
+    padding: 0 2rem;
+  }
+  .introduction2-title {
+    font-size: 1.5rem;
+  }
+  .introduction2-subtitle {
+    font-size: 16px;
+    padding-bottom: 2rem;
+  }
+}

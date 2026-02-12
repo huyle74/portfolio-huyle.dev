@@ -1,37 +1,70 @@
-import { createFileRoute } from '@tanstack/react-router'
-import '../App.css'
+import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect, useRef } from "react";
+import "../App.css";
+import Screen from "@/components/Screen/Screen";
+import Introduction from "@/components/Introduction/Introduction";
+import Project from "@/components/Projects/Project";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute("/")({ component: App });
 
 function App() {
+  const [screenHeight, setScreenHeight] = useState(0);
+  const [ratio, setRatio] = useState(0);
+  const [screenAnimated, setScreenAnimated] = useState({
+    opacity: 1,
+  });
+  const [menuOpacity, setMenuOpacity] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const appRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const height = window.innerHeight;
+    setScreenHeight(height);
+
+    const app = appRef.current;
+    if (!app) return;
+
+    const handleScroll = () => {
+      setScrollY(app.scrollTop);
+    };
+
+    app.addEventListener("scroll", handleScroll);
+    return () => {
+      app.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (screenHeight === 0) return;
+    const newRatio = Math.min(scrollY / screenHeight, 1);
+
+    if (newRatio === 0) {
+      setMenuOpacity(0);
+    }
+    setRatio(newRatio);
+
+    if (newRatio > 0.2) {
+      setMenuOpacity(1);
+      return;
+    }
+    setMenuOpacity(newRatio);
+  }, [scrollY, screenHeight]);
+
+  useEffect(() => {
+    setScreenAnimated({
+      opacity: 1 - ratio,
+    });
+  }, [ratio]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src="/tanstack-circle-logo.png"
-          className="App-logo"
-          alt="TanStack Logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
+    <div className="App" ref={appRef}>
+      <Header opacity={menuOpacity} />
+      <Screen height={100} width={100} opacity={screenAnimated.opacity} />
+      <Introduction />
+      <Project />
+      <Footer />
     </div>
-  )
+  );
 }
