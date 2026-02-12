@@ -2,7 +2,7 @@ import "./Introduction.css";
 
 export default function Introduction() {
   return (
-    <div className="introduction2-container">
+    <div className="introduction2-container" id="about">
       <h1 className="introduction2-title">Hi there</h1>
       <p className="introduction2-subtitle">
         This is Huy Le, I’m a Fullstack Web Developer with 2 years of experience

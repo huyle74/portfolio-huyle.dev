@@ -54,11 +54,10 @@ function App() {
   }, [scrollY, screenHeight]);
 
   useEffect(() => {
-    setScreenAnimated((prev) => ({
-      ...prev,
+    setScreenAnimated({
       opacity: 1 - ratio,
       zIndex: ratio >= 1 ? -1 : 0,
-    }));
+    });
   }, [ratio]);
 
   return (

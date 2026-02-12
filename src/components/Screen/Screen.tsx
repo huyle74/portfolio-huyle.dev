@@ -5,12 +5,16 @@ interface ScreenProps {
   opacity: number;
   width?: number;
   height?: number;
+  display?: string;
+  zIndex?: number;
 }
 
 export default function Screen({
   opacity,
   width = 100,
   height = 100,
+  display = "flex",
+  zIndex = 1,
 }: ScreenProps) {
   const [newInput, setNewInput] = useState<ReactElement | null>(null);
   const [inputValue, setInputValue] = useState("");
@@ -69,7 +73,7 @@ export default function Screen({
     <div
       id="home"
       className="body"
-      style={{ opacity, width: `${width}vw`, height: `${height}vh` }}
+      style={{ opacity, width: `${width}vw`, height: `${height}vh`, display, zIndex }}
       onClick={handleClickOverlay}
     >
       <div className="container screen" ref={infoRef}>

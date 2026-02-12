@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import "./Header.css";
 
 interface HeaderProps {
@@ -11,6 +11,10 @@ export default function Header({ opacity }: HeaderProps) {
 
   const toggleOpen = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
+  }, []);
+
+  const handleClickHome = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const linkStyle = {
@@ -45,8 +49,6 @@ export default function Header({ opacity }: HeaderProps) {
     );
   };
 
-  useEffect(() => {}, []);
-
   return (
     <div
       className="header"
@@ -71,7 +73,14 @@ export default function Header({ opacity }: HeaderProps) {
         <MenuSvg />
       </button>
       <div className="links">
-        <a href="#home" style={linkStyle} onClick={toggleOpen}>
+        <a
+          href="#home"
+          style={linkStyle}
+          onClick={() => {
+            toggleOpen();
+            handleClickHome();
+          }}
+        >
           Home
         </a>
         <a href="#about" style={linkStyle} onClick={toggleOpen}>
